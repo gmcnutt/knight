@@ -19,7 +19,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.spritesheet('player', 'assets/images/walkcycle.png', {frameWidth: 48, frameHeight: 55});
+    this.load.spritesheet('player', 'assets/images/walkcycle.png', {frameWidth: 48, frameHeight: 59});
 }
 
 function create() {
@@ -28,20 +28,20 @@ function create() {
 
     this.anims.create({
         key: 'left',
-        frames: this.anims.generateFrameNumbers('player', { start: 8, end: 15 }),
+        frames: this.anims.generateFrameNumbers('player', { start: 10, end: 19 }),
         frameRate: 10,
         repeat: -1
     });
 
     this.anims.create({
         key: 'turn',
-        frames: [ { key: 'player', frame: 4 } ],
+        frames: [ { key: 'player', frame: 20 } ],
         frameRate: 20
     });
 
     this.anims.create({
         key: 'right',
-        frames: this.anims.generateFrameNumbers('player', { start: 0, end: 6 }),
+        frames: this.anims.generateFrameNumbers('player', { start: 0, end: 9 }),
         frameRate: 10,
         repeat: -1
     });
