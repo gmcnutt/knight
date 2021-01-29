@@ -21,13 +21,15 @@ var game = new Phaser.Game(config);
 
 function preload() {
     this.load.image('ground', 'assets/images/ground.png');
+    this.load.image('line', 'assets/images/line.png');
     this.load.spritesheet('player', 'assets/images/walkcycle.png', {frameWidth: 48, frameHeight: 59});
 }
 
 function create() {
 
     platforms = this.physics.add.staticGroup();
-    platforms.create(774/2, 568, 'ground');
+    platforms.create(774/2, 566, 'line');
+    this.add.image(774/2, 568, 'ground');
     
     this.player = this.physics.add.sprite(100, 450, 'player').setBounce(0.2).setCollideWorldBounds(true);
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -35,7 +37,7 @@ function create() {
     this.anims.create({
         key: 'left',
         frames: this.anims.generateFrameNumbers('player', { start: 10, end: 19 }),
-        frameRate: 10,
+        frameRate: 20,
         repeat: -1
     });
 
@@ -48,7 +50,7 @@ function create() {
     this.anims.create({
         key: 'right',
         frames: this.anims.generateFrameNumbers('player', { start: 0, end: 9 }),
-        frameRate: 10,
+        frameRate: 20,
         repeat: -1
     });
     
@@ -56,7 +58,8 @@ function create() {
 }
 
 function update() {
-    let speed = 80;
+    // fr 10, speed 68 pretty close; or 20/135
+    let speed = 70 * 2;
     
     if (this.cursors.left.isDown) {
         this.player.setVelocityX(-speed);
