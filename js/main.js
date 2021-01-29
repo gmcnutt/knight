@@ -2,6 +2,7 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    pixelArt: true,
     physics: {
         default: 'arcade',
         arcade: {
@@ -19,10 +20,15 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
+    this.load.image('ground', 'assets/images/ground.png');
     this.load.spritesheet('player', 'assets/images/walkcycle.png', {frameWidth: 48, frameHeight: 59});
 }
 
 function create() {
+
+    platforms = this.physics.add.staticGroup();
+    platforms.create(774/2, 568, 'ground');
+    
     this.player = this.physics.add.sprite(100, 450, 'player').setBounce(0.2).setCollideWorldBounds(true);
     this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -46,15 +52,17 @@ function create() {
         repeat: -1
     });
     
+    this.physics.add.collider(this.player, platforms);
 }
 
 function update() {
+    let speed = 80;
     
     if (this.cursors.left.isDown) {
-        this.player.setVelocityX(-160);
+        this.player.setVelocityX(-speed);
         this.player.anims.play('left', true);
     } else if (this.cursors.right.isDown) {
-        this.player.setVelocityX(160);
+        this.player.setVelocityX(speed);
         this.player.anims.play('right', true);
     } else {
         this.player.setVelocityX(0);
