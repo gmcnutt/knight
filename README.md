@@ -12,4 +12,4 @@ Browse to [localhost port 8000])(http://localhost:8000).
 
 # Play
 
-User `left/right arrow keys` and `space` to jump.
+Use `left/right arrow keys` and `space` to jump.
